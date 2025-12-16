@@ -11,21 +11,25 @@ export const fetchCurrentWeatherAPI = async (city) => {
 
     const data = await res.json();
     console.log("API data:", data); // proper logging
+    return data;
   } catch (error) {
     throw new Error("City not found");
   }
-  return data;
 }
 
 export const fetchForecast = async (city) => {
   try {
-    const res = await fetch(
-    `${BASE_URL}/forecast?q=${city}&units=metric&appid=${API_KEY}`
-  );
-  } catch (error) {
+    console.log("forecast data fetched");
     
+    const res = await fetch(
+    `${BASE_URL}/forecast?q=${city}&appid=${API_KEY}`
+  );
+  const forecastData = await res.json();
+  console.log("forecastAPI data:", forecastData); // proper logging
+
+  return forecastData;
+  } catch (error) {
     throw new Error("Forecast not available");
   }
 
-  return res.json();
 };
