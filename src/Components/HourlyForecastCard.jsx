@@ -1,8 +1,7 @@
 import React from 'react'
 
-const HourlyForecastCard = ({ hourlyForecast, loading, error }) => {
+const HourlyForecastCard = ({ hourlyForecast, loading }) => {
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
   if (!hourlyForecast) return <div>Data not found</div>;
 
   return (
@@ -14,7 +13,7 @@ const HourlyForecastCard = ({ hourlyForecast, loading, error }) => {
           <div key={item.dt} className=' min-w-18 flex flex-col items-center text-center  '>
             <p>{item.dt_txt.split(" ")[1].slice(0, 5)}</p>
             <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt='icon' className="w-8 h-8"></img>
-            <p>{Math.round(item.main.temp - 273.15)}°C</p>
+            <p>{Math.round(item.main.temp)}°C</p>
             <p>{item.weather[0].main}</p>
           </div>
         )}

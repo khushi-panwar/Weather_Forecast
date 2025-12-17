@@ -5,7 +5,6 @@ export const fetchCurrentWeatherAPI = async (city) => {
   //fetch url
   try {
     const res = await fetch(`${BASE_URL}/weather?q=${city}&units=metric&appid=${API_KEY}`);
-
     const data = await res.json();
     return data;
   } catch (error) {
@@ -16,7 +15,7 @@ export const fetchCurrentWeatherAPI = async (city) => {
 export const fetchForecast = async (city) => {
   try {    
     const res = await fetch(
-    `${BASE_URL}/forecast?q=${city}&appid=${API_KEY}`
+    `${BASE_URL}/forecast?q=${city}&units=metric&appid=${API_KEY}`
   );
   const forecastData = await res.json();
 

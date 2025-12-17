@@ -11,7 +11,7 @@ import DailyForecastCard from './Components/DailyForecastCard';
 
 const App = () => {
   const [city, setCity] = useState("London");
-  const { weather, dailyForecast, hourlyForecast, loading, error, searchCity } = useWeather();
+  const { weather, dailyForecast, hourlyForecast, loading, searchCity } = useWeather();
 
   const handleSearch = () => {
     if (!city.trim()) {
@@ -20,10 +20,10 @@ const App = () => {
     searchCity(city);
   }
 
-  // default location render
+  // default location render - once on mount
   useEffect(() => {
     if (city) handleSearch();
-  }, [city]);
+  }, []);
 
 
   return (
@@ -47,19 +47,16 @@ const App = () => {
           <CurrentWeatherCard
             weather={weather}
             loading={loading}
-            error={error}
           />
         </div>
         {/* right */}
         <div className='md:w-1/2 rounded-2xl space-y-2'>
           <HourlyForecastCard
             hourlyForecast={hourlyForecast}
-            loading={loading}
-            error={error} />
+            loading={loading} />
           <DailyForecastCard
             dailyForecast={dailyForecast}
             loading={loading}
-            error={error}
           />
         </div>
       </section>

@@ -1,8 +1,7 @@
 import React from 'react'
 
-export const CurrentWeatherCard = ({ weather, loading, error }) => {
+export const CurrentWeatherCard = ({ weather, loading }) => {
     if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
     if (!weather) return <div>Data not found</div>;
 
     // conversion of time

@@ -1,9 +1,8 @@
 import React from 'react'
 
-const DailyForecastCard = ({ dailyForecast, loading, error }) => {
+const DailyForecastCard = ({ dailyForecast, loading }) => {
     if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
-  if (!dailyForecast) return <div>Data not found</div>;
+    if (!dailyForecast) return <div>Data not found</div>;
 
     return (
         <div className=' p-3 rounded-2xl bg-white/10 backdrop-blur-xl  border border-white/20 shadow-lg text-white md:h-70 h-70'>
@@ -12,9 +11,9 @@ const DailyForecastCard = ({ dailyForecast, loading, error }) => {
                 {
                     dailyForecast.map(item =>
                         <div key={item.dt} className='flex w-full justify-between my-1'>
-                            <p>{item.dt_txt.split(" ")[1].slice(0, 5)}</p>
+                            <p>{item.dt_txt.split(" ")[0].slice(5)}</p>
                             <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt='icon' className="w-8 h-8"></img>
-                            <p>{Math.round(item.main.temp - 273.15)}°C</p>
+                            <p>{Math.round(item.main.temp)}°C</p>
                             <p>{item.weather[0].main}</p>
                         </div>
                     )
